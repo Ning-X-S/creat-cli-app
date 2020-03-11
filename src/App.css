@@ -2,9 +2,14 @@
   text-align: center;
 }
 
+.liuxing {
+  width: 3rem;
+}
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
+  border-radius: 50%;
+  margin-top: 0.4rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {

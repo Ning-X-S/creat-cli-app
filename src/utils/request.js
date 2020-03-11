@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import qs from 'qs'
-import { open } from '@/scheme'
+import { open } from '../scheme'
 import sha from './sha'
 
 axios.interceptors.response.use((res) => {
@@ -77,14 +77,14 @@ export default function request (option) {
   // data.access_token = '18d4d9d3de366dc7e561d0ebf25aaf7b'
 
   // 自己的token
-  // data.access_token = 'a1d1db91f0c58f7a23743788b2fde05f'
+  data.access_token = 'a1d1db91f0c58f7a23743788b2fde05f'
 
   // 他人的token
   // data.access_token = 'cbac5c4cdc27e320ae612f91450a9050'
 
   data.app = 'xz'
   data.via = data.via ? data.via : 'h5'
-  data.s_secretKey = 'tBXg2CqRI2h3kR8r0krtS6vqlTBLpynn'
+  data.s_secretKey = ''
   data.s_st = new Date().getTime()
   let time = '' + data.s_st
   let arr = []

@@ -1,8 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { userInfo, getShareInfo } from './api/user'
 import TodoClass from './components/class-com'
 import Todo from './components/functional'
+import { open } from './scheme'
 
 const dataChe = '哈哈哈哈哈哈'
 
@@ -44,35 +46,89 @@ const dataChe = '哈哈哈哈哈哈'
 // }
 
 
+// function TodoControl () {
+
+// }
+
+async function getUserInfo (accountId = '', that) {
+  try {
+    let params = {
+      show_account_id: accountId
+    }
+    let res = await userInfo(params)
+    console.log(res)
+    res.data.follow_status = Number(res.data.follow_status)
+    that.setState({
+      userInfo: res.data
+    })
+    if (res.data.nick_name.length > 9) {
+      document.querySelector('title').innerHTML = res.data.nick_name.substring(0, 6) + '...'
+    } else {
+      document.querySelector('title').innerHTML = res.data.nick_name
+    }
+  } catch (err) {
+    console.log(err)
+    // 导航栏显示黑色scheme
+    open.xz_show_share_navigation_bar({
+      back_button_type: 0
+    })
+  }
+}
+
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       logo: logo,
+      logo1: 'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg',
       title: '测试一下试试',
       name: 'class',
-      url: 'https://pic.lehe.com/pic/_o/14/b4/7a7025435f86b813f29af85c8ec3_453_453.cz.jpg_cd579946_s5_150_150.jpg'
+      url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3323152762,4277374593&fm=26&gp=0.jpg',
+      userInfo: {
+        account_id: '261755211424354939'
+      },
+      isShowTodo: true
+    }
+    console.log('app-init')
+  }
+  async componentDidMount () {
+    console.log('app-componentDidMount')
+    await getUserInfo(this.state.userInfo.account_id , this) 
+    await this.getShareInfoFun()
+    console.log(this)
+  }
+  async getShareInfoFun () {
+    try {
+      let res = await getShareInfo({
+        source: 'xiaozhuo'
+      })
+      console.log(res)
+      this.setState({
+        shareInfo: res.data
+      })
+    } catch (err) {
+      console.log(err)
     }
   }
   openSrc (name) {
-    console.log(name)
-    console.log(this)
     this.setState({
       name
     })
   }
   openSrcImg (data) {
-    console.log(data)
-    console.log(this)
+    this.setState({
+      isShowTodo: false
+    })
   }
   render () {
     return (
       <div className="App">
         <header className="App-header">
-          <img onClick={(e) => this.openSrcImg(this.state.logo)} src={this.state.url}  alt="avator" />
-          <img src={this.state.logo} className="App-logo" alt="logo" />
+          <img onClick={(e) => this.openSrcImg(this.state.url)} className="liuxing" src={this.state.url}  alt="avator" />
+          {/* <img src={this.state.logo} className="App-logo" alt="logo" /> */}
+          <img src={this.state.logo1} className="App-logo" alt="logo" />
           <p onClick={this.openSrc.bind(this, dataChe)}>
-            Edit <code>src/App.js</code> and save to reload.
+            点 <code>一下</code> 试试
           </p>
           <a
             className="App-link"
@@ -80,9 +136,9 @@ class App extends React.Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React 2
+            什么东西都得试
           </a>
-          <TodoClass name={this.state.name} title={this.state.title} />
+          {this.state.isShowTodo ? <TodoClass name={this.state.name} title={this.state.title} /> : <Todo name="functional" />}
           <Todo name="functional" />
         </header>
       </div>
