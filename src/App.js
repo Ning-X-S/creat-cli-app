@@ -56,7 +56,6 @@ async function getUserInfo (accountId = '', that) {
       show_account_id: accountId
     }
     let res = await userInfo(params)
-    console.log(res)
     res.data.follow_status = Number(res.data.follow_status)
     that.setState({
       userInfo: res.data
@@ -87,7 +86,27 @@ class App extends React.Component {
       userInfo: {
         account_id: '261755211424354939'
       },
-      isShowTodo: true
+      isShowTodo: true,
+      list: [
+        {
+          name: '张三',
+          id: 1
+        },
+        {
+          name: '李四',
+          id: 2
+        }
+      ],
+      todoList: [
+        {
+          name: '肥肥',
+          id: 3
+        },
+        {
+          name: '涛涛',
+          id: 4
+        }
+      ]
     }
     console.log('app-init')
   }
@@ -102,7 +121,6 @@ class App extends React.Component {
       let res = await getShareInfo({
         source: 'xiaozhuo'
       })
-      console.log(res)
       this.setState({
         shareInfo: res.data
       })
@@ -138,8 +156,16 @@ class App extends React.Component {
           >
             什么东西都得试
           </a>
-          {this.state.isShowTodo ? <TodoClass name={this.state.name} title={this.state.title} /> : <Todo name="functional" />}
-          <Todo name="functional" />
+          {
+          this.state.isShowTodo ? 
+          <TodoClass
+            name={this.state.name}
+            title={this.state.title}
+            list={this.state.list} /> 
+          : <Todo list={this.state.todoList} name="functional" />}
+          <Todo
+            list={this.state.todoList}
+            name="functional" />
         </header>
       </div>
     )

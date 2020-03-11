@@ -4,7 +4,8 @@ class TodoClass extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      title: '测试一下试试'
+      title: '测试一下试试',
+      list: props.list
     }
   }
   componentDidMount() {
@@ -25,10 +26,17 @@ class TodoClass extends React.Component {
     if (this.timer) clearTimeout(this.timer)
   }
   render() {
+    let element = []
+    for (let index = 0; index < this.props.list.length; index++) {
+      let item = this.props.list[index]
+      element.push(<p key={item.id}>{item.name}</p>)
+    }
     return (
       <div>
         <p> 图雀--{this.props ? this.props.name : ''}</p>
         <p>{this.state ? this.state.title : ''}</p>
+        {element}
+        {this.props.list[0].name}
       </div>
     )
   }
