@@ -21,9 +21,10 @@ test
 
 ### 遇到的坑，有些可能是我使用的版本问题：
 
-# class要使用 className
+###### class要使用 className
 
-# render多行时加():
+###### render多行时加():
+...javasctipt
   return (
     <div className="about" >
       <p>这是关于页面</p>
@@ -33,12 +34,15 @@ test
       </div>
     </div>
   );
+...
 
-# 变量跟vue不同一个{}:
-
+###### 变量跟vue不同一个{}:
+...javasctipt
   <span>{item.id}</span>
+...
 
-# 循环渲染：
+###### 循环渲染：
+...javasctipt
   let element = []
   for (let index = 0; index < this.props.list.length; index++) {
     let item = this.props.list[index]
@@ -52,26 +56,34 @@ test
       {this.props.list[0].name}
     </div>
   )
+...
 
-# 页面销毁时在componentWillUnmount中清楚定时器：
+###### 页面销毁时在componentWillUnmount中清楚定时器：
+...javasctipt
   componentWillUnmount() {
     console.log('son-componentWillUnmount')
     if (this.timer) clearTimeout(this.timer)
   }
+...
 
-# 巨坑，不能直接setState ( title: new Date()），我特么找了半天：
+###### 巨坑，不能直接setState ( title: new Date()），我特么找了半天：
+...javasctipt
   // 不能设置new Date()
   // 真特么坑
   this.setState({
     title: new Date().getTime()
   })
+...
 
-# react-router 4.0以上， 最好使用 react-router-dom一套
-
+###### react-router 4.0以上， 最好使用 react-router-dom一套
+...javasctipt
   import { Route, BrowserRouter as Router } from 'react-router-dom'; // import { ConnectedRouter } from 'connected-react-router'
-
 
   <Router>
     <Route path="/home" component={Home} />            
     <Route path="/about" component={About} />
   </Router>
+...
+
+
+
