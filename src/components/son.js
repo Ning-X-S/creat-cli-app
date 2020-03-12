@@ -16,9 +16,9 @@ function Son(props) {
   );
 }
 
-function openName(num, handleClick) {
-  handleClick(num + 1)
-}
+// function openName(num, handleClick) {
+//   handleClick(num + 1)
+// }
 
 export default Son
   

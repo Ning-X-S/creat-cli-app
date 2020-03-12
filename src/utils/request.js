@@ -84,7 +84,7 @@ export default function request (option) {
 
   data.app = 'xz'
   data.via = data.via ? data.via : 'h5'
-  data.s_secretKey = ''
+  data.s_secretKey = 'tBXg2CqRI2h3kR8r0krtS6vqlTBLpynn'
   data.s_st = new Date().getTime()
   let time = '' + data.s_st
   let arr = []
