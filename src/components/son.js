@@ -2,9 +2,9 @@ import React from 'react';
 
 
 function Son(props) {
-  console.log(props)
+  // console.log(props)
   const { num, handleClick } = props;
-  console.log(handleClick)
+  // console.log(handleClick)
   return (
     <div
       onClick={() => {

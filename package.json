@@ -75,6 +75,10 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
     "extends": "react-app"
   },
   "browserslist": {

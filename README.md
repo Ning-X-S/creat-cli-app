@@ -21,6 +21,9 @@ test
 
 ### 遇到的坑，有些可能是我使用的版本问题：
 
+
+
+
 ###### class要使用 className
 
 ###### render多行时加():
@@ -85,5 +88,21 @@ test
   </Router>
 ```
 
+###### constructorcu初始化state时,等于一个对象
+```javasctipt
+  this.state = {
+    init: '1231'
+  }
+```
+
+###### 组件挂载时有关的生命周期
+
+  constructor被调用是在组件准备要挂载的最一开始，所以此时组件尚未挂载到网页上
+  componentWillMount方法的调用在constructor之后，在render之前，在这方法里的代码调用setState方法不会触发重渲染，所以它一般不会用来作加载数据之用，它也很少被使用到。
+  render 方法必须要返回一个 JSX 元素。但这里要注意的是，必须要用一个外层的 JSX 元素把所有内容包裹起来，返回并列多个 JSX 元素是不合法的。
+  一般的从后台(服务器)获取的数据，都会与组件上要用的数据加载有关，所以都在componentDidMount方法里面作。虽然与组件上的数据无关的加载，也可以在constructor里作，但constructor是作组件state初绐化工作，并不是设计来作加载数据这工作的，所以所有有副作用的代码都会集中在componentDidMount方法里。
 
 
+###### Eslint坑 API ---  no-unused-expressions
+
+  Line 64:9:  Expected an assignment or function call and instead saw an expression  no-unused-expressions

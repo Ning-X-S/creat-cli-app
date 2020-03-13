@@ -79,6 +79,7 @@ async function getUserInfo (accountId = '', that) {
 class Home extends React.Component {
   constructor (props) {
     super(props)
+    console.log(this.props)
     this.state = {
       logo: logo,
       logo1: 'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg',
@@ -86,7 +87,7 @@ class Home extends React.Component {
       name: 'class',
       url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3323152762,4277374593&fm=26&gp=0.jpg',
       userInfo: {
-        account_id: '261755211424354939'
+        account_id: this.props.match.params.id
       },
       isShowTodo: true,
       list: [

@@ -61,7 +61,7 @@ function rstr_hmac_sha1 (key, data) {
  * Convert a raw string to a hex string
  */
 function rstr2hex (input) {
-  console.log(hexcase)
+  // console.log(hexcase)
   try { hexcase } catch (e) { hexcase = 0 }
   var hex_tab = hexcase ? '0123456789ABCDEF' : '0123456789abcdef'
   var output = ''

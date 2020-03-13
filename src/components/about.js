@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 
 function About(props) {
-  console.log(props)
   return (
     <div className="about" >
       <p>这是关于页面</p>
