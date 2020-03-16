@@ -14,16 +14,16 @@ class TodoClass extends React.Component {
       this.tick(this)
     }, 1000)
   }
+  componentWillUnmount() {
+    console.log('son-componentWillUnmount')
+    if (this.timer) clearTimeout(this.timer)
+  }
   tick () {
     // 不能设置new Date()
     // 真特么坑
     this.setState({
       title: new Date().getTime()
     })
-  }
-  componentWillUnmount() {
-    console.log('son-componentWillUnmount')
-    if (this.timer) clearTimeout(this.timer)
   }
   render() {
     let element = []

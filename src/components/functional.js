@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Son from './son'
+import Son from './son.jsx'
 
 function Todo(props) {
   const { num, setId} = useState(100)

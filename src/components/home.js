@@ -118,6 +118,11 @@ class Home extends React.Component {
     await getUserInfo(this.state.userInfo.account_id , this) 
     await this.getShareInfoFun()
     console.log(this)
+    // this.props.history.push('/about');
+  }
+  componentWillUnmount() {
+    console.log('son-componentWillUnmount')
+    if (this.timer) clearTimeout(this.timer)
   }
   async getShareInfoFun () {
     try {
@@ -145,30 +150,25 @@ class Home extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img onClick={(e) => this.openSrcImg(this.state.url)} className="liuxing" src={this.state.url}  alt="avator" />
+          <img onClick={(e) => this.openSrcImg(this.state.url)} className="liuxing" src={this.state.url} alt="avator" />
           {/* <img src={this.state.logo} className="App-logo" alt="logo" /> */}
           <img src={this.state.logo1} className="App-logo" alt="logo" />
           <p onClick={this.openSrc.bind(this, dataChe)}>
             点 <code>一下</code> 试试
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer">
-            
-          </a>
           <Link to="/about">什么东西都得试</Link>
           {
           this.state.isShowTodo ? 
           <TodoClass
             name={this.state.name}
             title={this.state.title}
-            list={this.state.list} /> 
+            list={this.state.list}
+          /> 
           : <Todo list={this.state.todoList} name="functional" />}
           <Todo
             list={this.state.todoList}
-            name="functional" />
+            name="functional"
+          />
         </header>
       </div>
     )
