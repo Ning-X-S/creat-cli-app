@@ -2,6 +2,7 @@
   "name": "creat-cli-app",
   "version": "0.1.0",
   "private": true,
+  "author": "qiuwenju",
   "dependencies": {
     "@babel/core": "7.8.4",
     "@svgr/webpack": "4.3.3",
