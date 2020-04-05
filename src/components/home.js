@@ -4,7 +4,7 @@ import '../styles/home.css';
 import { userInfo, getShareInfo } from '../api/user'
 import TodoClass from './class-com'
 import Todo from './functional'
-import { open } from '../scheme'
+// import { open } from '../scheme'
 import { Link } from 'react-router-dom'
 
 const dataChe = '哈哈哈哈哈哈'
