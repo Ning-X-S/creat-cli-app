@@ -70,9 +70,9 @@ async function getUserInfo (accountId = '', that) {
   } catch (err) {
     console.log(err)
     // 导航栏显示黑色scheme
-    open.xz_show_share_navigation_bar({
-      back_button_type: 0
-    })
+    // open.xz_show_share_navigation_bar({
+    //   back_button_type: 0
+    // })
   }
 }
 
