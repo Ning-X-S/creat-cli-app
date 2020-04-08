@@ -5,6 +5,7 @@
 .liuxing {
   width: 3rem;
 }
+
 .App-logo {
   height: 20vmin;
   pointer-events: none;
@@ -27,6 +28,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  .list {
+    display: flex;
+    flex-direction: row;
+    a {
+      padding: .2rem;
+    }
+  }
 }
 
 .App-link {

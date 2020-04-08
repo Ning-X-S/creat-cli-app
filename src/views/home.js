@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from '../logo.svg';
-import '../styles/home.css';
+import '../styles/home.scss';
 import { userInfo, getShareInfo } from '../api/user'
-import TodoClass from './class-com'
-import Todo from './functional'
-// import { open } from '../scheme'
+import TodoClass from '../components/class-com'
+import Todo from '../components/functional'
+import { open } from '../scheme'
 import { Link } from 'react-router-dom'
 
 const dataChe = '哈哈哈哈哈哈'
@@ -48,10 +48,6 @@ const dataChe = '哈哈哈哈哈哈'
 // }
 
 
-// function TodoControl () {
-
-// }
-
 async function getUserInfo (accountId = '', that) {
   try {
     let params = {
@@ -70,9 +66,9 @@ async function getUserInfo (accountId = '', that) {
   } catch (err) {
     console.log(err)
     // 导航栏显示黑色scheme
-    // open.xz_show_share_navigation_bar({
-    //   back_button_type: 0
-    // })
+    open.xz_show_share_navigation_bar({
+      back_button_type: 0
+    })
   }
 }
 
@@ -82,7 +78,7 @@ class Home extends React.Component {
     console.log(this.props)
     this.state = {
       logo: logo,
-      logo1: 'http://cdn.duitang.com/uploads/item/201410/21/20141021130151_ndsC4.jpeg',
+      logo1: 'https://pic.lehe.com/pic/_o/6f/a5/59770a0cdf7a6b34fe1238eb4e6a_828_828.cz.jpg_ec164870_s5_150_150.jpg',
       title: '测试一下试试',
       name: 'class',
       url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3323152762,4277374593&fm=26&gp=0.jpg',
@@ -150,13 +146,20 @@ class Home extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <div className="list">
+            <Link to="/creat">
+              列表
+            </Link>
+            <Link to="/about">
+              关于我们
+            </Link>
+          </div>
           <img onClick={(e) => this.openSrcImg(this.state.url)} className="liuxing" src={this.state.url} alt="avator" />
           {/* <img src={this.state.logo} className="App-logo" alt="logo" /> */}
           <img src={this.state.logo1} className="App-logo" alt="logo" />
           <p onClick={this.openSrc.bind(this, dataChe)}>
             点 <code>一下</code> 试试
           </p>
-          <Link to="/about">什么东西都得试</Link>
           {
           this.state.isShowTodo ? 
           <TodoClass

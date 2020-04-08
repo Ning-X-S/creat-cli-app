@@ -13,4 +13,11 @@ module.exports = function(app) {
     changeOrigin: true,
     https: true
   }));
+  app.use(proxy('/api', {
+    target: 'http://47.95.1.50:7002/',
+    secure: false,
+    changeOrigin: true,
+    https: true
+  }));
 };
+

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Route, BrowserRouter, Redirect, BrowserRouter as hashHistory } from 'react-router-dom'; // import { ConnectedRouter } from 'connected-react-router'
-import Home from './components/home'
-import About from './components/about.jsx'
+import Home from './views/home'
+import About from './views/about.js'
 import { getShareInfo } from './api/user'
+import Creat from './views/creat'
 import './styles/public.scss'
 const id = '261755211424354939'
 
@@ -37,6 +38,7 @@ class App extends React.Component {
         </Route>
         <Route path="/home/:id" exact component={this.state.isShow ? Home : About} />   
         <Route path="/about" component={About} />
+        <Route path="/creat" component={Creat} />
       </BrowserRouter>
     )
   }
