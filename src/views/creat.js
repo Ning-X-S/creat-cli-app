@@ -55,7 +55,7 @@ class Creat extends React.Component {
   render() {
     return (
       <div className="list-content" >
-        <div className="list-box-title">内容111</div>
+        <div className="list-box-title">内容222</div>
         <List list={this.state.list} />
       </div>
     )
