@@ -1,0 +1,15 @@
+p {
+  margin: .2rem 0 0 0;
+}
+.edit-content {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  padding: 0.4rem;
+  box-sizing: border-box;
+  color: #333;
+  button {
+    float: right;
+    margin-top: 1.6rem;
+  }
+}

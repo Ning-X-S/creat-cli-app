@@ -1,59 +1,27 @@
 import axios from 'axios'
 // import qs from 'qs'
-// import { open } from '../scheme'
 import sha from './sha'
 
 axios.interceptors.response.use((res) => {
   let { status, data: { code = 0, error_code: errorCode = 0, message = '' } } = res
+  console.log(message)
   if (status === 401) {
-    // open.xz_open_login({
-    //   success: () => {
-    //     window.location.reload()
-    //   }
-    // })
     return Promise.reject(res.data)
   } else {
     if (Number(code) === 0 && Number(errorCode) === 0) {
       return Promise.resolve(res.data)
     } else if (Number(code) === 40001) {
-      // open.xz_open_login({
-      //   success: () => {
-      //     window.location.reload()
-      //   }
-      // })
       return Promise.reject(res.data)
     } else if (Number(errorCode) === 4133202 || Number(errorCode) === 4133203 || Number(errorCode) === 4040007) {
-      if (window.location.href.indexOf('/user/application1') !== -1) {
-        // 会员入驻也在第一次登录后进入，IOS客户端写入token存在写不进来的可能，暂时先这样写
-        console.log('access_token兼容')
-      } else {
-        // open.xz_open_login({
-        //   success: () => {
-        //     window.location.reload()
-        //   }
-        // })
-      }
       return Promise.reject(res.data)
     } else if (Number(errorCode) === 4161107) {
-      // open.xz_open_login({
-      //   message: message
-      // })
       return Promise.reject(res.data)
     } else if (Number(errorCode) === 4161220 || Number(errorCode) === 4161222) {
-      // open.xz_response_error_code({
-      //   error_code: Number(errorCode),
-      //   message: message
-      // })
       let data = {
         message: ''
       }
       return Promise.reject(data)
     } else if (Number(errorCode) === 4133205) {
-      // open.xz_response_error_code({
-      //   error_code: Number(errorCode),
-      //   message: message,
-      //   pop_image: res.data.data.pop_image
-      // })
       let data = {
         message: ''
       }
@@ -73,7 +41,8 @@ export default function request (option) {
   // console.log(process.env)
   const method = typeof option.method === 'string' ? option.method.toUpperCase() : 'GET'
   let data = option.params || option.data || {}
-  
+
+  data.access_token = '3ebb813d77f14cf0f9ab490961d21c89'
 
   data.app = 'xz'
   data.via = data.via ? data.via : 'h5'

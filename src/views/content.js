@@ -1,8 +1,9 @@
 import React from 'react';
-import '../styles/creat.scss'
+import '../styles/content.scss'
 // import { Link } from 'react-router-dom'
-import { contentList } from '../api/content'
+import { getList } from '../api/content'
 // import List from '../components/creat/list'
+import { Button } from 'antd';
 
 // function Creats(props) {
 //   console.log(props)
@@ -16,9 +17,12 @@ import { contentList } from '../api/content'
 //   );
 // }
 function List(props) {
+  function openCreate (id) {
+    props.that.props.history.push(`/create?id=${id}`)
+  }
   const elements = (
     props.list.map(item =>
-      <div className="list-item" key={item.id}>
+      <div className="list-item" onClick={() => openCreate(item.id)} key={item.id}>
         <div className="title">
           <span>{item.title}</span>
         </div>
@@ -33,6 +37,7 @@ function List(props) {
   )
 }
 
+
 class Creat extends React.Component {
   constructor (props) {
     super(props)
@@ -46,17 +51,24 @@ class Creat extends React.Component {
     }
   }
   async componentDidMount () {
-    let res = await contentList(this.state.pageInfo)
+    let res = await getList(this.state.pageInfo)
     console.log(res)
     this.setState({
       list: res.data.list
     })
   }
+  openCreate () {
+    console.log(this.props)
+    this.props.history.push(`/create`)
+  }
   render() {
     return (
       <div className="list-content" >
-        <div className="list-box-title">内容222</div>
-        <List list={this.state.list} />
+        <div className="list-box-title">
+          <div>内容</div>
+          <Button onClick={()=> this.openCreate()} type="primary">新建+</Button>
+        </div>
+        <List list={this.state.list} that={this} />
       </div>
     )
   }

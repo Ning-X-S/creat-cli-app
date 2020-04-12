@@ -4,7 +4,7 @@ import '../styles/home.scss';
 import { userInfo, getShareInfo } from '../api/user'
 import TodoClass from '../components/class-com'
 import Todo from '../components/functional'
-import { open } from '../scheme'
+// import { open } from '../scheme'
 import { Link } from 'react-router-dom'
 
 const dataChe = '哈哈哈哈哈哈'
@@ -60,7 +60,7 @@ async function getUserInfo (accountId = '', that) {
     that.setState({
       userInfo: res.data
     })
-    if (res.data.nick_name.length > 9) {
+    if (res.data && res.data.nick_name.length > 9) {
       document.querySelector('title').innerHTML = res.data.nick_name.substring(0, 6) + '...'
     } else {
       document.querySelector('title').innerHTML = res.data.nick_name
@@ -148,8 +148,9 @@ class Home extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          
           <div className="list">
-            <Link to="/creat">
+            <Link to="/Content">
               列表
             </Link>
             <Link to="/about">

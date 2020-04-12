@@ -5,13 +5,15 @@ p {
 .list-content {
   background-color: #f5f5f5;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   font-size: calc(10px + 2vmin);
   padding: 0.4rem;
   box-sizing: border-box;
   color: #333;
   .list-box-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: .8rem;
     font-size: .44rem;
     font-weight: 500;
