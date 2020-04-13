@@ -1,10 +1,15 @@
 import React from 'react';
 import '../styles/content.scss'
 // import { Link } from 'react-router-dom'
-import { getList } from '../api/content'
+import { getList, deleteContent } from '../api/content'
 // import List from '../components/creat/list'
 import { Button } from 'antd';
 import { Toast } from 'antd-mobile';
+import { FormOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Modal } from 'antd-mobile';
+
+const alert = Modal.alert;
+
 
 // function Creats(props) {
 //   console.log(props)
@@ -17,17 +22,42 @@ import { Toast } from 'antd-mobile';
 //     </div>
 //   );
 // }
+
+async function deleteCont (id, that) {
+  try {
+    let res = await deleteContent({id: id})  
+    Toast.info(res.data.message)
+    await that.getList()
+  } catch (err) {
+    Toast.info(err.message)
+  }
+}
 function List(props) {
   function openCreate (id) {
     props.that.props.history.push(`/create?id=${id}`)
   }
+  function deleteContent (item) {
+    alert('温馨提示', `Are you sure 删除 ${item.title}???`, [
+      { text: '取消', onPress: () => console.log('cancel'), style: 'default' },
+      { text: '确认', onPress: async () => {
+        await deleteCont(item.id, props.that)
+      } },
+    ]);
+  }
   const elements = (
     props.list.map(item =>
-      <div className="list-item" onClick={() => openCreate(item.id)} key={item.id}>
+      <div className="list-item" key={item.id}>
         <div className="title">
           <span>{item.title}</span>
         </div>
         <p>{item.desc}</p>
+
+        <div className="opt">
+          <div className="opt-box">
+            <div className="icon"><FormOutlined onClick={() => openCreate(item.id)} /></div>
+            <div className="icon"><DeleteOutlined onClick={() => deleteContent(item)} /></div>
+          </div>
+        </div>
       </div>
     )
   )
@@ -52,14 +82,22 @@ class Creat extends React.Component {
     }
   }
   async componentDidMount () {
-    Toast.loading('Loading...', 30, () => {
-      console.log('Load complete !!!');
-    });
-    let res = await getList(this.state.pageInfo)
-    Toast.hide();
-    this.setState({
-      list: res.data.list
-    })
+    await this.getList()
+  }
+  async getList() {
+    try {
+      Toast.loading('Loading...', 30, () => {
+        console.log('Load complete !!!');
+      });
+      let res = await getList(this.state.pageInfo)
+      Toast.hide();
+      this.setState({
+        list: res.data.list
+      })
+    } catch (err) {
+      console.log(err)
+      Toast.info(err.message)
+    }
   }
   openCreate () {
     console.log(this.props)

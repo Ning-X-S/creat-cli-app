@@ -38,3 +38,11 @@ export function updateContent (data) {
   })
 }
 
+export function deleteContent (data) {
+  return request({
+    url: '/api/content/delete',
+    method: 'post',
+    data
+  })
+}
+
