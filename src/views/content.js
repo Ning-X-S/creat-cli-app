@@ -4,6 +4,7 @@ import '../styles/content.scss'
 import { getList } from '../api/content'
 // import List from '../components/creat/list'
 import { Button } from 'antd';
+import { Toast } from 'antd-mobile';
 
 // function Creats(props) {
 //   console.log(props)
@@ -51,8 +52,11 @@ class Creat extends React.Component {
     }
   }
   async componentDidMount () {
+    Toast.loading('Loading...', 30, () => {
+      console.log('Load complete !!!');
+    });
     let res = await getList(this.state.pageInfo)
-    console.log(res)
+    Toast.hide();
     this.setState({
       list: res.data.list
     })

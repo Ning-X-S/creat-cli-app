@@ -5,7 +5,8 @@ import { getDetail, updateContent, createContent } from '../api/content'
 import queryString from 'query-string';
 import { Input } from 'antd';
 import { Button } from 'antd';
-
+import { Toast } from 'antd-mobile';
+ 
 const { TextArea } = Input;
 
 
@@ -24,7 +25,11 @@ class Creat extends React.Component {
   async componentDidMount () {
     console.log('create-componentDidMount')
     if (this.state.id) {
+      Toast.loading('Loading...', 30, () => {
+        console.log('Load complete !!!');
+      });
       let res = await getDetail({id: this.state.id})
+      Toast.hide();
       console.log(res)
       this.setState({
         info: res.data
@@ -49,9 +54,7 @@ class Creat extends React.Component {
   }
 
   async submit () {
-    console.log(this)
     try {
-      console.log(this.state.info)
       let params = {
         title: this.state.info.title,
         desc: this.state.info.desc
@@ -59,12 +62,17 @@ class Creat extends React.Component {
       if (this.state.id) {
         params.id = this.state.id
         await updateContent(params)
+        Toast.info('修改成功', 1)
       } else {
         await createContent(params)
+        Toast.info('创建成功', 1)
       }
-      this.props.history.goBack()
+      setTimeout(() => {
+        this.props.history.goBack()
+      }, 500)
     } catch (err) {
       console.log(err)
+      Toast.fail(err.message, 1)
     }
     
   }

@@ -3,8 +3,8 @@ import { Route, BrowserRouter, Redirect, BrowserRouter as hashHistory } from 're
 import Home from './views/home'
 import About from './views/about'
 import Create from './views/create'
-import { getShareInfo } from './api/user'
 import Content from './views/content'
+import { getShareInfo } from './api/user'
 import './styles/public.scss'
 import './App.css';
 
