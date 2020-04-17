@@ -38,14 +38,10 @@ axios.interceptors.response.use((res) => {
 })
 
 export default function request (option) {
-  // console.log(process.env)
   const method = typeof option.method === 'string' ? option.method.toUpperCase() : 'GET'
   let data = option.params || option.data || {}
 
-  data.access_token = '3ebb813d77f14cf0f9ab490961d21c89'
 
-  data.app = 'xz'
-  data.via = data.via ? data.via : 'h5'
   data.s_secretKey = 'tBXg2CqRI2h3kR8r0krtS6vqlTBLpynn'
   data.s_st = new Date().getTime()
   let time = '' + data.s_st
