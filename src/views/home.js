@@ -150,7 +150,7 @@ class Home extends React.Component {
         <header className="App-header">
           
           <div className="list">
-            <Link to="/Content">
+            <Link to="/content">
               列表
             </Link>
             <Link to="/about">
