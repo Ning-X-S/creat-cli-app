@@ -4,6 +4,7 @@ import Home from './views/home'
 import About from './views/about'
 import Create from './views/create'
 import Content from './views/content'
+import Hook from './views/hook'
 import { getShareInfo } from './api/user'
 import './styles/public.scss'
 import './App.css';
@@ -43,6 +44,7 @@ class App extends React.Component {
         <Route path="/about" component={About} />
         <Route path="/content" component={Content} />
         <Route path="/create" component={Create} />
+        <Route path="/hook" component={Hook} />
       </BrowserRouter>
     )
   }

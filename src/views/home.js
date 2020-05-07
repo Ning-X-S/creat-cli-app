@@ -156,6 +156,9 @@ class Home extends React.Component {
             <Link to="/about">
               关于我们
             </Link>
+            <Link to="/hook">
+              hooks
+            </Link>
           </div>
           <img onClick={(e) => this.openSrcImg(this.state.url)} className="liuxing" src={this.state.url} alt="avator" />
           {/* <img src={this.state.logo} className="App-logo" alt="logo" /> */}
