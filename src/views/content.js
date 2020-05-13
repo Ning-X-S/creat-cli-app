@@ -5,8 +5,12 @@ import { getList, deleteContent } from '../api/content'
 // import List from '../components/creat/list'
 import { Button } from 'antd';
 import { Toast } from 'antd-mobile';
+
 import { FormOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Modal } from 'antd-mobile';
+// 引入redux中的语法
+import { connect } from 'react-redux'
+import { switchTitle} from '../redux/action'
 
 const alert = Modal.alert;
 
@@ -69,7 +73,7 @@ function List(props) {
 }
 
 
-class Creat extends React.Component {
+class Content extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -103,11 +107,12 @@ class Creat extends React.Component {
     console.log(this.props)
     this.props.history.push(`/create`)
   }
+  
   render() {
     return (
       <div className="list-content" >
         <div className="list-box-title">
-          <div>内容</div>
+          <div onClick={() => {this.props.dispatch(switchTitle('这是列表页'))}}>内容{this.props.tempTitle}</div>
           <Button onClick={()=> this.openCreate()} type="primary">新建+</Button>
         </div>
         <List list={this.state.list} that={this} />
@@ -116,9 +121,15 @@ class Creat extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    tempTitle: state.tempTitle
+  }
+}
+
 // function openName(num, handleClick) {
 //   handleClick(num + 1)
 // }
 
-export default Creat
+export default connect(mapStateToProps)(Content)
   

@@ -6,6 +6,8 @@ import queryString from 'query-string';
 import { Input } from 'antd';
 import { Button } from 'antd';
 import { Toast } from 'antd-mobile';
+import { connect } from 'react-redux'
+import { switchTitle } from '../redux/action'
  
 const { TextArea } = Input;
 
@@ -80,6 +82,7 @@ class Creat extends React.Component {
   render() {
     return (
       <div className="edit-content">
+        <div style={{marginBottom: '10px'}} onClick={() => {this.props.dispatch(switchTitle('这是编辑页'))}}>{this.props.tempTitle}</div>
         <Input type="text" value={this.state.info.title} placeholder="请输入文章标题" allowClear onChange={this.onChange} />
         <br />
         <br />
@@ -90,10 +93,15 @@ class Creat extends React.Component {
     )
   }
 }
-
+//  
 // function openName(num, handleClick) {
 //   handleClick(num + 1)
 // }
+const mapStateToProps = state => {
+  return {
+    tempTitle: state.tempTitle
+  }
+}
 
-export default Creat
+export default connect(mapStateToProps)(Creat)
   
