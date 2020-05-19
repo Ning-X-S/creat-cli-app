@@ -71,7 +71,8 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "dev": "react-app-rewired start",
+    "start": "NODE_ENV=production react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom"
   },
@@ -146,7 +147,8 @@
   },
   "babel": {
     "presets": [
-      "react-app"
+      "react-app",
+      "env"
     ],
     "plugins": [
       [

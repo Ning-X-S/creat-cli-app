@@ -14,7 +14,7 @@ module.exports = function(app) {
     https: true
   }));
   app.use(proxy('/api', {
-    target: 'http://47.95.1.50:7002/',
+    target: process.env.NODE_ENV === 'development' ? 'http://shadiaoa.club/' : 'http://shadiaoa.club/',
     secure: false,
     changeOrigin: true,
     https: true

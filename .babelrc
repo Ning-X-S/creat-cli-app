@@ -2,7 +2,8 @@
 // package.json和这个文件只能存在一个
 {
   "presets": [
-    "react-app"
+    "react-app",
+    "env"
   ],
   "plugins": [
     [
