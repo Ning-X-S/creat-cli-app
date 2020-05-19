@@ -1,6 +1,53 @@
 .hook {
   padding: 20px;
 }
-.list-content {
-  padding: 0.4rem 0
+.list-content-hook {
+  padding: 0.4rem 0;
+  .list-box-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .8rem;
+    font-size: .44rem;
+    font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+  }
+  .list-item {
+    margin-bottom: .4rem;
+    background: #fff;
+    border-radius: 6px;
+    color: #333;
+    padding: .2rem;
+    .title {
+      font-size: .36rem;
+      font-weight: 500;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    p {
+      font-size: .28rem;
+      margin: .2rem 0 .3rem 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+    }
+    .opt {
+      display: flex;
+      flex-direction: row;;
+      justify-content: space-between;
+      .opt-box {
+        margin-left: auto;
+        display: flex;
+        flex-direction: row;;
+        .icon {
+          padding: .2rem;
+        }
+      }
+    }
+  }
 }

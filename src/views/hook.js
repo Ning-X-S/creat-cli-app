@@ -33,7 +33,7 @@ function ContentItem (props) {
     )
   )
   return (
-    <div className="list-content">
+    <div className="list-content-hook">
       <div className="list-box-title">
           <div onClick={() => {store.dispatch(switchTitle('这是列表页'))}}>内容{props.prop.tempTitle}</div>
           <Button onClick={()=> openCreate()} type="primary">新建+</Button>
