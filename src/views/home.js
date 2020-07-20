@@ -179,8 +179,8 @@ class Home extends React.Component {
             name="functional"
           />
         </header>
-        <footor style={{marginTop: 100, textAlign: 'center', marginBottom: 40}}>
-            <a href="www.beian.miit.gov.cn">陕ICP备20005100号</a>
+        <footor style={{display: 'block',marginTop: 100, textAlign: 'center', marginBottom: 40}}>
+            <a href="www.beian.miit.gov.cn" _target="_blank">陕ICP备20005100号</a>
         </footor>
       </div>
     )
